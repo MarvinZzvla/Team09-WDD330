@@ -1,4 +1,9 @@
-const baseURL = import.meta.env.VITE_SERVER_URL;
+// Get the base URL from environment variables
+let baseURL = import.meta.env.VITE_SERVER_URL;
+
+// No need to add trailing slash with our proxy configuration
+// We'll add a small debug message to verify the URL being used
+console.log("API baseURL:", baseURL);
 
 async function convertToJson(res) {
   const jsonResponse = await res.json();
@@ -36,8 +41,6 @@ export async function checkout(payload) {
 }
 
 export async function loginRequest(creds) {
-  const loginURL = "http://server-nodejs.cit.byui.edu:3000/login";
-
   const options = {
     method: "POST",
     headers: {
@@ -46,17 +49,12 @@ export async function loginRequest(creds) {
     body: JSON.stringify(creds),
   };
 
-  const response = await fetch(loginURL, options);
+  const response = await fetch(baseURL + "login", options);
   const data = await convertToJson(response);
   return data.accessToken;
 }
 
 export async function getOrders(token) {
-  const ordersURL = "http://server-nodejs.cit.byui.edu:3000/orders";
-
-  console.log("Getting orders from:", ordersURL);
-  console.log("Token available:", token ? "Yes" : "No");
-
   if (!token) {
     throw new Error("No authentication token provided");
   }
@@ -68,19 +66,7 @@ export async function getOrders(token) {
     },
   };
 
-  try {
-    console.log("Sending request to orders API");
-    const response = await fetch(ordersURL, options);
-    console.log("Response received:", response.status, response.statusText);
-
-    const data = await convertToJson(response);
-    console.log(
-      "Orders data received, count:",
-      Array.isArray(data) ? data.length : "N/A"
-    );
-    return data;
-  } catch (error) {
-    console.error("Error in getOrders:", error);
-    throw error;
-  }
+  const response = await fetch(baseURL + "orders", options);
+  const data = await convertToJson(response);
+  return data;
 }

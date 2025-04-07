@@ -64,11 +64,32 @@ export function renderWithTemplate(
 
 // Function to load a template - using currying
 export function loadTemplate(path) {
+  // Check if we're in production mode (running on Vercel)
+  const isProd =
+    window.location.hostname !== "localhost" &&
+    window.location.hostname !== "127.0.0.1";
+
+  // If we're in production, adjust the path for our serverless API
+  const templatePath =
+    isProd && path.includes("/partials/")
+      ? `/api/partials?name=${path.split("/partials/")[1].replace(".html", "")}`
+      : path;
+
   return async function () {
-    const res = await fetch(path);
-    if (res.ok) {
-      const html = await res.text();
-      return html;
+    try {
+      const res = await fetch(templatePath);
+      if (res.ok) {
+        const html = await res.text();
+        return html;
+      } else {
+        console.error(
+          `Error loading template: ${templatePath} - Status: ${res.status}`
+        );
+        return `<div class="template-error">Error loading content</div>`;
+      }
+    } catch (error) {
+      console.error(`Error fetching template: ${templatePath}`, error);
+      return `<div class="template-error">Error loading content</div>`;
     }
   };
 }
