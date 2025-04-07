@@ -4,6 +4,7 @@
   "rewrites": [
     { "source": "/api/proxy", "destination": "/api/proxy" },
     { "source": "/api/partials", "destination": "/api/partials" },
+    { "source": "/api/image-proxy", "destination": "/api/image-proxy" },
     { "source": "/(.*)", "destination": "/index.html" }
   ],
   "headers": [
@@ -17,6 +18,15 @@
         {
           "key": "Cache-Control",
           "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/api/image-proxy",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
         }
       ]
     }
