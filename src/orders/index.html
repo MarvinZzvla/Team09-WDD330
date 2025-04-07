@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sleep Outside | Orders</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body>
+    <header class="divider" id="main-header"></header>
+    <main class="divider">
+      <h1>Your Orders</h1>
+      <div class="orders-list"></div>
+
+      <!-- Debug section - will show if there are issues -->
+      <div id="debug-section" class="debug-info" style="display: none">
+        <h3>Debugging Information</h3>
+        <div id="debug-content"></div>
+        <button id="reload-btn" style="margin-top: 10px">
+          Retry Loading Orders
+        </button>
+      </div>
+    </main>
+    <footer id="main-footer"></footer>
+    <script>
+      // Helper function to show debugging info if needed
+      window.showDebugInfo = function (info) {
+        const debugSection = document.getElementById("debug-section");
+        const debugContent = document.getElementById("debug-content");
+
+        if (debugSection && debugContent) {
+          debugSection.style.display = "block";
+
+          if (typeof info === "object") {
+            debugContent.textContent = JSON.stringify(info, null, 2);
+          } else {
+            debugContent.textContent = info;
+          }
+        }
+      };
+
+      // Event listener for reload button
+      document
+        .getElementById("reload-btn")
+        .addEventListener("click", function () {
+          window.location.reload();
+        });
+
+      // Capture errors
+      window.addEventListener("error", function (event) {
+        console.error("Captured error:", event.error);
+        window.showDebugInfo("ERROR: " + event.error.message);
+      });
+    </script>
+    <script src="../js/orders.js" type="module"></script>
+  </body>
+</html>

@@ -1,40 +1,30 @@
 <!DOCTYPE html>
 
 <html lang="en">
-
   <head>
-
     <meta charset="UTF-8" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Sleep Outside | Checkout</title>
 
-    <link rel="stylesheet" href="css/style.css" />
-
+    <link rel="stylesheet" href="../css/style.css" />
   </head>
 
   <body>
-
-    <header class="divider">
-
+    <header class="divider" id="main-header">
       <div class="logo">
-
         <img src="images/noun_Tent_2517.svg" alt="tent image for logo" />
 
         <a href="index.html">
-           Sleep
+          Sleep
           <span class="highlight">Outside</span>
         </a>
-
       </div>
 
       <div class="cart">
-
         <a href="cart/">
-
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-
             <path
               d="M18.9 32.6c1.1 2.4 2.5 3.3 5.4 3.3 1.6 0 3.6-0.3 5.9-0.6 3.2-0.5 6.9-1 11.2-1 2.1 0 4.3 0.1 6.4 0.3 2.1 0.1 4.2 0.3 6.1 0.3 3.2 0 5.2-0.4 5.9-1.2 2.7-2.7 2.8-8.8 2.9-14.6 0.1-6.7 0.2-14.5 4.6-18.7 -0.5 0-1 0-1.6 0 -14.2 0-37.5 0-41.1 0C15.6 6.2 14.9 23.6 18.9 32.6z"
             />
@@ -61,28 +51,94 @@
 
             <!-- <text x="0" y="115" fill="#000000" font-size="5px" font-weight="bold" font-family="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, Sans-serif">Created by Natalia Woodroffe</text>
             <text x="0" y="120" fill="#000000" font-size="5px" font-weight="bold" font-family="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, Sans-serif">from the Noun Project</text> -->
-
           </svg>
-
         </a>
-
       </div>
-
     </header>
 
     <main class="divider">
-
       <section class="products">
-
         <h2>Review & Place your Order</h2>
 
-      </section>
+        <form class="checkout-form">
+          <div>
+            <fieldset>
+              <legend>Shipping</legend>
+              <div class="form-group">
+                <label for="fname">First Name</label>
+                <input type="text" id="fname" name="fname" required />
+              </div>
+              <div class="form-group">
+                <label for="lname">Last Name</label>
+                <input type="text" id="lname" name="lname" required />
+              </div>
+              <div class="form-group">
+                <label for="street">Street</label>
+                <input type="text" id="street" name="street" required />
+              </div>
+              <div class="form-group">
+                <label for="city">City</label>
+                <input type="text" id="city" name="city" required />
+              </div>
+              <div class="form-group">
+                <label for="state">State</label>
+                <input type="text" id="state" name="state" required />
+              </div>
+              <div class="form-group">
+                <label for="zip">Zip</label>
+                <input type="text" id="zip" name="zip" required />
+              </div>
+            </fieldset>
 
+            <fieldset>
+              <legend>Payment</legend>
+              <div class="form-group">
+                <label for="cardNumber">Card number</label>
+                <input type="text" id="cardNumber" name="cardNumber" required />
+              </div>
+              <div class="form-group">
+                <label for="expiration">Expiration</label>
+                <input
+                  type="text"
+                  id="expiration"
+                  name="expiration"
+                  placeholder="MM/YY"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="code">Security Code</label>
+                <input type="text" id="code" name="code" required />
+              </div>
+            </fieldset>
+
+            <button type="submit" id="checkoutSubmit">Checkout</button>
+          </div>
+
+          <div class="order-summary">
+            <h3>Order Summary</h3>
+            <div class="line-item">
+              <span>Item Subtotal</span>
+              <span id="subtotal"></span>
+            </div>
+            <div class="line-item">
+              <span>Shipping Estimate</span>
+              <span id="shipping"></span>
+            </div>
+            <div class="line-item">
+              <span>Tax</span>
+              <span id="tax"></span>
+            </div>
+            <div class="line-item total">
+              <span>Order Total</span>
+              <span id="orderTotal"></span>
+            </div>
+          </div>
+        </form>
+      </section>
     </main>
 
-    <footer>&copy;NOT a real business</footer>
-
+    <footer id="main-footer">&copy;NOT a real business</footer>
+    <script src="../js/checkout.js" type="module"></script>
   </body>
-
 </html>
-
