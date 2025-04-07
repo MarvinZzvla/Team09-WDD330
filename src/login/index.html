@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sleep Outside | Login</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body>
+    <header class="divider" id="main-header"></header>
+    <main class="divider">
+      <h1>Login</h1>
+      <div class="login-message">
+        <p>For testing, use these credentials:</p>
+        <ul>
+          <li><strong>Email:</strong> user1@email.com</li>
+          <li><strong>Password:</strong> user1</li>
+        </ul>
+        <p>
+          <em>Note: The token expires in 1 minute for testing purposes.</em>
+        </p>
+      </div>
+      <form class="login-form">
+        <fieldset>
+          <legend>Login Information</legend>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value="user1@email.com"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value="user1"
+              required
+            />
+          </div>
+          <button type="submit" id="loginButton">Login</button>
+        </fieldset>
+      </form>
+    </main>
+    <footer id="main-footer"></footer>
+    <script src="../js/login.js" type="module"></script>
+  </body>
+</html>
